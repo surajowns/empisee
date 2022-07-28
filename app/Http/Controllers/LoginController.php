@@ -13,7 +13,9 @@ class LoginController extends Controller
 
      public function Login(Request $request)
     {
-        if ($request->isMethod('post')) {
+        if(session()->has('logRole') && session()->has('logid')){
+            return redirect('dashboard');
+        }elseif ($request->isMethod('post')) {
 
             if ($request->isMethod('post')) {
                 $validator = Validator::make($request->all(), [
@@ -37,7 +39,7 @@ class LoginController extends Controller
                             Session::put('logRole', Auth::User()['role']);
                             Session::put('logid', Auth::User()['id']);
 
-                            LoginLogs($user);
+                            // LoginLogs($user);
 
                             return redirect('dashboard')
                                 ->with('success', 'Welcome to dashboard.');

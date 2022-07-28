@@ -1,5 +1,7 @@
 <?php
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Hash; // custom for changing admin password
+
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -11,14 +13,11 @@ use Illuminate\Support\Facades\Hash;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 Route::any('/', 'LoginController@Login');
 Route::any('/logout', 'LoginController@logout');
 
 Route::any('dashboard', 'DashboardController@Dashboard');
+// Route::any('/dashboard', [App\Http\Controller\DashboardController::class, 'Dashboard']);
 Route::any('chart_data', 'DashboardController@ChartData');
 
 

@@ -13,19 +13,19 @@ class NotificationController extends Controller
         $this->middleware('CheckSession');
         
     }
-     public function Index(Request $request)
+    public function Index(Request $request)
     {   
         try{
-        $notification=NotificationModel::where('trash',0)->orderBy('id','DESC')->paginate(10);
-        foreach($notification as $val){
-               $seen_by[]=$val['seen_by'];
+            $notification=NotificationModel::where('trash',0)->orderBy('id','DESC')->paginate(10);
+            foreach($notification as $val){
+                $seen_by[]=$val['seen_by'];
+            }
+            $emp_id=Auth::user()->id;
+            return view('notification',compact('notification','emp_id'));
+            }
+        catch(\Exception $e){
+            dd($e->getMessage);
         }
-        $emp_id=Auth::user()->id;
-        return view('notification',compact('notification','emp_id'));
-     }
-     catch(\Exception $e){
-         dd($e->getMessage);
-     }
     }
     public function NotificationDetails(Request $request,$id=null)
     {

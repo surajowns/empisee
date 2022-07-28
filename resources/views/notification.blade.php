@@ -12,7 +12,11 @@
             <div class="{{!in_array($emp_id,json_decode($val->seen_by))?'card':''}} ctm-border-radius shadow-sm grow flex-fill">
                 <div class="card-body">
                     <p>{{$val->content}}. <a href="{{url('notification_details/'.$val->type)}}">Read More....</a></p>
-                    <span class="text-danger" style="font-size:10px;"> {{date('d/m/y',strtotime($val->created_at))}}({{date('l',strtotime($val->created_at))}}) - {{date('h:s A',strtotime($val->created_at))}}</span>
+                    <span class="text-danger" style="font-size:10px;"> 
+                        {{date('d/m/y',strtotime($val->created_at))}}
+                        ( {{date('l',strtotime($val->created_at))}} ) - 
+                        {{date('h:s A',strtotime($val->created_at))}}
+                    </span>
                 </div>
             </div>
         </div>
